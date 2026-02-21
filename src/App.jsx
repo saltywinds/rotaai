@@ -170,14 +170,17 @@ Schedule the optimal rota respecting all rules. Flag any coverage gaps or risks.
       const raw = await callClaude(system, user);
       let parsed;
       try {
-        const clean = raw.replace(/```json|```/g,"").trim();
-        // Find the JSON object in the response
-        const jsonMatch = clean.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) throw new Error("No JSON found in response");
-        parsed = JSON.parse(jsonMatch[0]);
+        // Strip markdown fences
+        let clean = raw.replace(/```json|```/g,"").trim();
+        // Extract just the JSON object
+        const start = clean.indexOf("{");
+        const end = clean.lastIndexOf("}");
+        if (start === -1 || end === -1) throw new Error("No JSON object found");
+        clean = clean.slice(start, end + 1);
+        parsed = JSON.parse(clean);
       } catch(parseErr) {
-        console.error("Parse error:", parseErr, "Raw response:", raw);
-        notify("AI responded but output couldn't be parsed — try again","err");
+        console.error("Parse error:", parseErr, "\nRaw response:", raw);
+        notify("Rota generated but couldn\'t be displayed — try again","err");
         setGenerating(false); setProgress("");
         return;
       }
