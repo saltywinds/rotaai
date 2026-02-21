@@ -14,33 +14,40 @@ async function callClaude(system, user) {
 
 // ── Default data ─────────────────────────────────────────────────────────────
 const DEFAULT_STAFF = [
-  { id:1,  name:"Sian Jarvis",       location:"Both",    roles:["Kitchen","Barista","FOH"],    days:["Mon","Tue","Wed","Thu","Fri","Sat"], hours:39, note:"Kitchen lead both sites" },
-  { id:2,  name:"Sam Gu",            location:"Both",    roles:["Barista","FOH"],              days:["Mon","Wed","Thu","Fri","Sat"],       hours:37, note:"" },
-  { id:3,  name:"Elliot Johnston",   location:"Both",    roles:["Barista","Pizza","FOH"],      days:["Mon","Tue","Thu","Fri","Sun"],       hours:33, note:"" },
-  { id:4,  name:"Grace Adamson",     location:"Both",    roles:["Kitchen","Barista","FOH"],    days:["Mon","Tue","Wed","Sat"],             hours:28, note:"No Crystal Palace home game Saturdays" },
-  { id:5,  name:"Jude Stephens",     location:"Oxted",   roles:["Barista","FOH"],              days:["Mon","Tue","Thu","Sun"],             hours:24, note:"" },
-  { id:6,  name:"Afreen Karimi",     location:"Oxted",   roles:["Barista","FOH"],              days:["Tue","Wed","Thu","Fri","Sat","Sun"], hours:35, note:"" },
-  { id:7,  name:"Sam Gardner",       location:"Both",    roles:["Kitchen","Pizza","Barista"],  days:["Thu","Fri","Sat"],                  hours:30, note:"Thu–Sat only" },
-  { id:8,  name:"Flynn McRobbie",    location:"Both",    roles:["Kitchen","Pizza","Barista"],  days:["Thu","Fri","Sat","Sun"],             hours:21, note:"" },
-  { id:9,  name:"Issie Yewman",      location:"Oxted",   roles:["Kitchen","Pizza","Barista"],  days:["Thu","Fri","Sun"],                  hours:20, note:"" },
-  { id:10, name:"Elisa Yewman",      location:"Both",    roles:["Pizza","Barista"],            days:["Fri","Sat"],                        hours:16, note:"" },
-  { id:11, name:"Emily Dayman",      location:"Reigate", roles:["Kitchen","Barista","FOH"],    days:["Mon","Wed","Sat","Sun"],             hours:27, note:"" },
-  { id:12, name:"Annie Ware",        location:"Reigate", roles:["Barista","FOH"],              days:["Tue","Thu","Fri","Sat","Sun"],       hours:34, note:"" },
-  { id:13, name:"Charlotte Good",    location:"Reigate", roles:["Barista","FOH"],              days:["Mon","Wed","Thu","Fri","Sat"],       hours:34, note:"" },
-  { id:14, name:"Hollie Spencer",    location:"Reigate", roles:["Barista","FOH"],              days:["Mon","Tue","Fri","Sat","Sun"],       hours:28, note:"" },
-  { id:15, name:"Poppy McAllister",  location:"Reigate", roles:["Barista","FOH"],              days:["Wed","Fri","Sun"],                  hours:22, note:"" },
-  { id:16, name:"Amber Shorey",      location:"Oxted",   roles:["FOH"],                        days:["Thu","Sat"],                        hours:16, note:"FOH only" },
-  { id:17, name:"Daisy Miller",      location:"Reigate", roles:["Barista","FOH"],              days:["Sat","Sun"],                        hours:12, note:"Short shifts only" },
-  { id:18, name:"Olivia Hudson",     location:"Oxted",   roles:["Barista","FOH"],              days:["Sun"],                              hours:8,  note:"Sunday only" },
-  { id:19, name:"Lauren",            location:"Reigate", roles:["Kitchen"],                    days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], hours:0, note:"LAST RESORT — Reigate kitchen only" },
-  { id:20, name:"Matt",              location:"Oxted",   roles:["Barista"],                    days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], hours:0, note:"LAST RESORT — Oxted barista only" },
+  { id:1, name:"Daisy Miller", location:"Reigate", roles:["FOH"], days:["Sat", "Sun"], hours:12, note:"Will be finished college at the start of June so I will be able to work weekdays aswell as weekends" },
+  { id:2, name:"Flynn McRobbie", location:"Both", roles:["Kitchen", "Pizza"], days:["Thu", "Fri", "Sat", "Sun"], hours:21, note:"If Saturday, only from 5, and wont be available everyweek | Working at the other job" },
+  { id:3, name:"Sam Gu", location:"Both", roles:["Barista", "FOH"], days:["Mon", "Wed", "Thu", "Fri", "Sat", "Sun"], hours:37, note:"I am happy to work 30-40hrs, 4-5 days per week, based upon your scheduling needs \n\nI have told Lauren that I will be finishing at the cafe in mid to late April. I don't have all of my plans for moving back to Canada clarified yet. I will make sure to give you at least 2 weeks notice when I decide to leave. | No other info I can think of right now" },
+  { id:4, name:"Sian Jarvis", location:"Both", roles:["Kitchen", "Barista"], days:["Mon", "Tue", "Thu", "Fri", "Sat", "Sun"], hours:39, note:"I am going backpack travelling from the 20th March-7th June so I\u2019ll be back and ready to work full-time again from the 8th June as I\u2019m not going to uni in September I\u2019ll be completing online courses. | I couldn\u2019t submit the form without pressing a day, but I am available all days of the week. \nJust some weekends I go to see my boyfriend and his family who live an hour away from me." },
+  { id:5, name:"Elliot Johnston", location:"Both", roles:["Barista", "Pizza"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sun"], hours:33, note:"Thurday and Tuesday evening unavailable | Rugby" },
+  { id:6, name:"Grace Adamson", location:"Both", roles:["Kitchen", "FOH"], days:["Mon", "Tue", "Wed", "Sat"], hours:28, note:"Saturdays when I don\u2019t have football (which I book off anyways) | My uni days and need one day off on the weekend (Sunday) as with uni aswell I need one day off a week" },
+  { id:7, name:"Jude Stephens", location:"Oxted", roles:["Barista", "FOH"], days:["Mon", "Tue", "Thu", "Sun"], hours:24, note:"Can only work till 4pm | Not available 10/03-17/03 and 04/04" },
+  { id:8, name:"Annie Ware", location:"Reigate", roles:["Barista", "FOH"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], hours:34, note:"Any 3 full days . Plus extra when needed" },
+  { id:9, name:"Amber Shorey", location:"Oxted", roles:["FOH"], days:["Thu", "Sat"], hours:16, note:"Monday afternoons, sometimes Friday evenings. My college timetable can change at any point with no warning, will let you know if this happens and my availability changes! | Can't do most Sundays." },
+  { id:10, name:"Poppy McAllister", location:"Reigate", roles:["Barista", "FOH"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sun"], hours:22, note:"Can do the occasional Saturday for cover. | Mondays have a fortnightly appointment usually until 11." },
+  { id:11, name:"Hollie Spencer", location:"Reigate", roles:["Barista", "FOH"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], hours:28, note:"Available any day for part time hours weekly would rather do two week days one weekend day if available" },
+  { id:12, name:"Elisa Yewman", location:"Oxted", roles:["Kitchen", "FOH", "Pizza"], days:["Fri", "Sat"], hours:16, note:"" },
+  { id:13, name:"Issie Yewman", location:"Oxted", roles:["Kitchen", "Barista", "FOH", "Pizza"], days:["Wed", "Thu", "Fri", "Sun"], hours:20, note:"Up to three shifts a week so either two pizza shifts and one day shift or two day shifts and one pizza shift. | I work for my other job these days" },
+  { id:14, name:"Olivia Hudson", location:"Oxted", roles:["FOH"], days:["Sun"], hours:8, note:"Pizzas nights if needed but exams are priority | School hours" },
+  { id:15, name:"Emily Dayman", location:"Reigate", roles:["Kitchen", "Barista", "FOH"], days:["Mon", "Tue", "Wed", "Sat", "Sun"], hours:27, note:"I have another job so I have to work the days with them also. I message Lauren 2 weeks in advanced to let her know days I can and can\u2019t do, so this changes weekly. | At the moment I may not be available thurs and fri as I\u2019m looking at doing a teaching placement for two days a week, will confirm this in the next week. Also I\u2019d like to have some weekends off, ideally every second weekend so I can go and see the country (one reason I came to England)." },
+  { id:16, name:"Afreen Karimi", location:"Oxted", roles:["Barista", "FOH"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], hours:35, note:"Prefer day time shifts as caring for my grandparents" },
+  { id:17, name:"Sam gardner", location:"Oxted", roles:["Kitchen", "Pizza"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], hours:30, note:"4-6 days preferred | From the 16/3 or 23/3 > im only available Thursday-sunday (3 days total please)" },
+  { id:18, name:"Charlotte Good", location:"Reigate", roles:["Barista", "FOH"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], hours:34, note:"5 days if possible please:) | If I could not do both weekend days all the time that would be lovely!" },
+  { id:19, name:"Lucas Church-Wood", location:"Oxted", roles:["Pizza"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], hours:0, note:"" },
+  { id:20, name:"Ally", location:"Reigate", roles:["Kitchen", "Barista", "FOH"], days:["Mon", "Tue", "Wed", "Thu", "Fri", "Sun"], hours:0, note:"Netball commitment on saturdays until the 7 march and then can work saturdays | Netball" }
 ];
 
 const DEFAULT_HOLIDAYS = [
-  { id:1, staffId:1,  name:"Sian Jarvis",    from:"2025-03-20", to:"2025-06-07", type:"Travel",       note:"Travelling abroad" },
-  { id:2, staffId:5,  name:"Jude Stephens",  from:"2025-03-10", to:"2025-03-17", type:"Annual Leave", note:"" },
-  { id:3, staffId:12, name:"Annie Ware",      from:"2025-03-27", to:"2025-03-30", type:"Annual Leave", note:"" },
-  { id:4, staffId:4,  name:"Grace Adamson",  from:"2025-03-08", to:"2025-03-08", type:"Unavailable",  note:"Crystal Palace home game" },
+  { id:1, staffId:4, name:"Sian Jarvis", from:"2026-03-20", to:"2026-06-07", type:"Travel", note:"Backpacking trip" },
+  { id:2, staffId:20, name:"Ally", from:"2026-02-24", to:"2026-02-24", type:"Annual Leave", note:"" },
+  { id:3, staffId:3, name:"Sam Gu", from:"2026-02-27", to:"2026-03-01", type:"Annual Leave", note:"" },
+  { id:4, staffId:6, name:"Grace Adamson", from:"2026-02-28", to:"2026-03-01", type:"Annual Leave", note:"" },
+  { id:5, staffId:10, name:"Poppy McAllister", from:"2026-02-28", to:"2026-03-01", type:"Annual Leave", note:"" },
+  { id:6, staffId:7, name:"Jude Stephens", from:"2026-03-10", to:"2026-03-17", type:"Annual Leave", note:"" },
+  { id:7, staffId:14, name:"Olivia Hudson", from:"2026-03-14", to:"2026-03-15", type:"Annual Leave", note:"" },
+  { id:8, staffId:9, name:"Amber Shorey", from:"2026-03-14", to:"2026-03-14", type:"Annual Leave", note:"" },
+  { id:9, staffId:2, name:"Flynn McRobbie", from:"2026-03-14", to:"2026-03-14", type:"Annual Leave", note:"" },
+  { id:10, staffId:8, name:"Annie Ware", from:"2026-03-22", to:"2026-03-22", type:"Annual Leave", note:"" },
+  { id:11, staffId:8, name:"Annie Ware", from:"2026-03-27", to:"2026-03-30", type:"Annual Leave", note:"" }
 ];
 
 // ── Constants ────────────────────────────────────────────────────────────────
@@ -99,7 +106,7 @@ export default function App() {
   const [rota,       setRota]      = useState(null);
   const [generating, setGenerating]= useState(false);
   const [progress,   setProgress]  = useState("");
-  const [weekStart,  setWeekStart] = useState("2025-03-02");
+  const [weekStart,  setWeekStart] = useState("2026-02-23");
   const [editStaff,  setEditStaff] = useState(null);
   const [showHolForm,setShowHolForm]=useState(false);
   const [toast,      setToast]     = useState(null);
@@ -128,28 +135,80 @@ export default function App() {
     const we = new Date(weekStart); we.setDate(we.getDate()+6);
     const weekLabel = `${fmtShort(weekStart)} – ${fmt(we.toISOString().slice(0,10))}`;
 
-    const system = `You are an expert staff rota scheduler for a café and pizza operation. Return ONLY valid JSON — no markdown, no explanation, no code fences.
+    const system = `You are an expert staff rota scheduler for two cafés (Oxted + Reigate) and a Pizza service. 
+Return ONLY valid JSON — no markdown, no explanation, no code fences.
 
 HARD RULES (never break these):
-1. Oxted Café (Mon-Sat 08:30-16:00, Sun 09:30-14:00): must have ≥1 Kitchen + ≥1 Barista at all times
-2. Reigate Café (same hours): must have ≥1 Kitchen + ≥1 Barista at all times
-3. Pizza Evening (Thu-Sat 16:00-22:00, Thu also 11:00-16:00 kitchen setup): must have ≥2 Pizza-capable staff at ALL times
-4. Only schedule staff on their listed available days
-5. Never schedule anyone marked ⛔ ON LEAVE THIS WEEK
-6. Staff with "LAST RESORT" in their note = only use if no other option exists for that role
-7. Match location: Oxted-only staff → Oxted only; Reigate-only → Reigate only; Both → either site
-8. Pizza staff cannot simultaneously work café during pizza hours (Thu-Sat 16:00+)
+1) Availability + leave:
+   - Only schedule staff on their listed available days.
+   - Never schedule anyone marked ⛔ ON LEAVE THIS WEEK.
+2) Location:
+   - Oxted-only staff → Oxted only; Reigate-only → Reigate only; Both → either site.
+3) No overlaps:
+   - Do not schedule the same person in overlapping times across any location.
+   - Pizza staff cannot simultaneously work café during pizza hours (Thu–Sat 16:00–22:00).
+4) Continuous role coverage (check by shift block and overlap):
+   - CAFÉS: At ALL times during each café shift block (and overlaps), there must be ≥1 Kitchen + ≥1 Barista on duty.
+   - PIZZA: At ALL times during each pizza shift block, there must be ≥2 Pizza-capable staff on duty.
+5) Headcount requirements must be met exactly for each shift block (total staff assigned = requiredTotal).
+6) Staff with "LAST RESORT" in their note = only use if no other option exists for that role/coverage.
+7) Respect notes that add time restrictions (e.g., "Sat only from 17:00", "Tue/Thu evenings unavailable").
 
-Return this exact JSON structure (all 7 days, even if a service is closed/empty that day):
+SHIFT REQUIREMENTS (by location, day, and shift block)
+OXTED
+- Mon: 08:30–16:00 (requiredTotal 3)
+- Tue: 08:30–16:00 (requiredTotal 3)
+- Wed: 08:30–16:00 (requiredTotal 3)
+- Thu: 08:30–16:00 (requiredTotal 3)
+- Fri: 08:30–16:00 (requiredTotal 3)
+- Fri: 10:00–14:00 (requiredTotal 1)
+- Sat: 08:00–16:00 (requiredTotal 2)
+- Sat: 09:00–16:00 (requiredTotal 2)
+- Sun: 09:30–14:00 (requiredTotal 4)
+
+REIGATE
+- Mon: 08:30–16:00 (requiredTotal 3)
+- Tue: 08:30–16:00 (requiredTotal 3)
+- Wed: 08:30–16:00 (requiredTotal 3)
+- Thu: 08:30–16:00 (requiredTotal 3)
+- Fri: 08:30–16:00 (requiredTotal 3)
+- Fri: 10:00–14:00 (requiredTotal 1)
+- Sat: 08:30–16:00 (requiredTotal 4)
+- Sat: 10:00–14:00 (requiredTotal 1)
+- Sun: 09:30–14:00 (requiredTotal 5)
+
+PIZZA
+- Thu: 11:00–22:00 (requiredTotal 1)  [setup / long shift]
+- Thu: 16:00–22:00 (requiredTotal 2)
+- Fri: 16:00–22:00 (requiredTotal 3)
+- Sat: 16:00–22:00 (requiredTotal 3)
+
+Return this exact JSON structure (all 7 days):
 {
   "weekLabel": "${weekLabel}",
   "days": [
     {
       "dayName": "Mon",
-      "date": "2 Mar",
-      "oxted":   { "hours": "08:30–16:00", "staff": [{"name":"Full Name","role":"Kitchen"}], "flags": [] },
-      "reigate": { "hours": "08:30–16:00", "staff": [{"name":"Full Name","role":"Barista"}], "flags": [] },
-      "pizza":   { "hours": "", "staff": [], "flags": [] }
+      "dateISO": "YYYY-MM-DD",
+      "dateLabel": "2 Mar",
+      "oxted": {
+        "shifts": [
+          { "hours":"08:30–16:00", "requiredTotal":3, "minKitchen":1, "minBarista":1,
+            "staff":[{"name":"Full Name","role":"Kitchen"}], "flags":[] }
+        ],
+        "flags":[]
+      },
+      "reigate": {
+        "shifts": [
+          { "hours":"08:30–16:00", "requiredTotal":3, "minKitchen":1, "minBarista":1,
+            "staff":[{"name":"Full Name","role":"Barista"}], "flags":[] }
+        ],
+        "flags":[]
+      },
+      "pizza": {
+        "shifts": [],
+        "flags":[]
+      }
     }
   ],
   "flags": ["Any overall warnings here"],
@@ -408,7 +467,7 @@ function RotaGrid({rota}) {
           return (
             <div key={i} style={{background:wknd?"#191e2e":"#141420",borderRadius:8,padding:"8px 10px",textAlign:"center",border:`1px solid ${wknd?"#2e75b622":"#1a1a28"}`}}>
               <div style={{fontWeight:700,fontSize:13,color:wknd?"#2e75b6":"#bbb"}}>{d.dayName}</div>
-              <div style={{fontSize:10,color:"#444",marginTop:1}}>{d.date}</div>
+              <div style={{fontSize:10,color:"#444",marginTop:1}}>{d.dateLabel || d.date}</div>
             </div>
           );
         })}
@@ -437,30 +496,49 @@ function RotaGrid({rota}) {
 
 // ── Service Cell ─────────────────────────────────────────────────────────────
 function ServiceCell({service,color,bg}) {
-  const empty=!service?.staff?.length, flagged=service?.flags?.length>0;
+  const shifts = service?.shifts || (service?.hours ? [{ hours: service.hours, staff: service.staff || [], flags: service.flags || [] }] : []);
+  const empty  = !shifts.length || shifts.every(sh => !sh.staff?.length);
+  const flagged = (service?.flags?.length>0) || shifts.some(sh => sh.flags?.length>0);
+
   return (
     <div style={{background:empty?"#0a0a0f":bg,border:`1px solid ${flagged?"#c55a11":empty?"#111":color+"22"}`,borderRadius:8,padding:"8px 9px",minHeight:85}}>
       {empty
-        ?<div style={{color:"#1e1e2e",fontSize:10,textAlign:"center",paddingTop:20,fontStyle:"italic"}}>—</div>
-        :<>
-          <div style={{fontSize:9,color:color,fontWeight:700,marginBottom:5,opacity:0.75}}>{service.hours}</div>
-          {service.staff.map((s,i)=>(
-            <div key={i} style={{display:"flex",alignItems:"center",gap:4,marginBottom:3}}>
-              <div style={{width:15,height:15,borderRadius:3,background:color+"20",border:`1px solid ${color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:6,fontWeight:800,color,flexShrink:0}}>
-                {s.name.split(" ").map(n=>n[0]).join("").slice(0,2)}
-              </div>
-              <span style={{fontSize:10,color:"#ccc",fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{s.name.split(" ")[0]}</span>
-              <span style={{fontSize:8,color:"#3a3a4a",marginLeft:"auto",whiteSpace:"nowrap"}}>{s.role}</span>
-            </div>
-          ))}
-          {flagged&&<div style={{marginTop:4,fontSize:9,color:"#c55a11",padding:"2px 5px",background:"#1e0800",borderRadius:3}}>⚠ {service.flags[0]}</div>}
-        </>
+        ? <div style={{color:"#1e1e2e",fontSize:10,textAlign:"center",paddingTop:20,fontStyle:"italic"}}>—</div>
+        : <>
+            {shifts.map((sh,si)=> {
+              const shFlagged = sh.flags?.length>0;
+              return (
+                <div key={si} style={{borderTop: si===0 ? "none" : `1px dashed ${color}22`, paddingTop: si===0 ? 0 : 7, marginTop: si===0 ? 0 : 7}}>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
+                    <div style={{fontSize:9,color:color,fontWeight:700,opacity:0.75}}>{sh.hours}</div>
+                    {typeof sh.requiredTotal === "number" && (
+                      <div style={{marginLeft:"auto",fontSize:9,color:"#444"}}>{(sh.staff?.length||0)}/{sh.requiredTotal}</div>
+                    )}
+                  </div>
+
+                  {sh.staff?.map((s,i)=>(
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:4,marginBottom:3}}>
+                      <div style={{width:15,height:15,borderRadius:3,background:color+"20",border:`1px solid ${color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:6,fontWeight:800,color,flexShrink:0}}>
+                        {s.name.split(" ").map(n=>n[0]).join("").slice(0,2)}
+                      </div>
+                      <span style={{fontSize:10,color:"#ccc",fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{s.name.split(" ")[0]}</span>
+                      <span style={{fontSize:8,color:"#3a3a4a",marginLeft:"auto",whiteSpace:"nowrap"}}>{s.role}</span>
+                    </div>
+                  ))}
+
+                  {shFlagged && <div style={{marginTop:4,fontSize:9,color:"#c55a11",padding:"2px 5px",background:"#1e0800",borderRadius:3}}>⚠ {sh.flags[0]}</div>}
+                </div>
+              );
+            })}
+            {service?.flags?.length>0 && <div style={{marginTop:6,fontSize:9,color:"#c55a11",padding:"2px 5px",background:"#1e0800",borderRadius:3}}>⚠ {service.flags[0]}</div>}
+          </>
       }
     </div>
   );
 }
 
 // ── Staff Grid ───────────────────────────────────────────────────────────────
+ ───────────────────────────────────────────────────────────────
 function StaffGrid({staff,holidays,onEdit,onRemove}) {
   const today=new Date().toISOString().slice(0,10);
   return (
