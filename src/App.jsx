@@ -167,9 +167,20 @@ ${holLines}
 Schedule the optimal rota respecting all rules. Flag any coverage gaps or risks.`;
 
     try {
-      const raw  = await callClaude(system, user);
-      const clean = raw.replace(/```json|```/g,"").trim();
-      const parsed = JSON.parse(clean);
+      const raw = await callClaude(system, user);
+      let parsed;
+      try {
+        const clean = raw.replace(/```json|```/g,"").trim();
+        // Find the JSON object in the response
+        const jsonMatch = clean.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) throw new Error("No JSON found in response");
+        parsed = JSON.parse(jsonMatch[0]);
+      } catch(parseErr) {
+        console.error("Parse error:", parseErr, "Raw response:", raw);
+        notify("AI responded but output couldn't be parsed — try again","err");
+        setGenerating(false); setProgress("");
+        return;
+      }
       setRota(parsed);
       // Auto-save rota
       const saved = { id:Date.now(), weekLabel, weekStart, rota:parsed, createdAt:new Date().toISOString() };
